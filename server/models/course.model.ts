@@ -35,6 +35,7 @@ interface ICourseData extends Document{
 interface ICourse extends Document{
     name: string;
     description:string;
+    categories:string;
     price:number;
     estimatePrice?: number;
     thumbmail: object;
@@ -73,7 +74,7 @@ const commentSchema = new Schema<IComment>({
 
 const courseDataSchema = new Schema<ICourseData>({
     videoUrl:String,
-    // videoThumbnail:Object,
+    videoThumbnail:Object,
     title:String,
     videoSection:String,
     description:String,
@@ -90,6 +91,10 @@ const courseSchema = new Schema<ICourse>({
         required:true
     },
     description:{
+        type:String,
+        required:true
+    },
+    categories:{
         type:String,
         required:true
     },

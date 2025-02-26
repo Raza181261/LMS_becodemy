@@ -17,16 +17,18 @@ export const createLayout = CatchAsyncError(
       if (type === "Banner") {
         const { image, title, subTitle } = req.body;
         const myCloud = await cloudinary.v2.uploader.upload(image, {
-          folder: "layout",
+          folder: "layouts",
         });
         const banner = {
           type: "Banner",
+          banner:{
           image: {
             public_id: myCloud.public_id,
             url: myCloud.secure_url,
           },
           title,
           subTitle,
+        }
         };
 
         await LayoutModel.create(banner);
@@ -81,28 +83,41 @@ export const editLayout = CatchAsyncError(
         const bannerData: any = await LayoutModel.findOne({ type: "Banner" });
 
         const { image, title, subTitle } = req.body;
-        if (bannerData) {
-          await cloudinary.v2.uploader.destroy(bannerData.image.public_id);
-        }
-        const myCloud = await cloudinary.v2.uploader.upload(image, {
-          folder: "layout",
-        });
+
+        const data = image.startsWith("https") ? bannerData : await cloudinary.v2.uploader.upload(image,{
+          folder:"layout"
+        })
+
+        // if (bannerData) {
+        //   await cloudinary.v2.uploader.destroy(bannerData.image.public_id);
+        // }
+        // const myCloud = await cloudinary.v2.uploader.upload(image, {
+        //   folder: "layouts",
+        // });
+
         const banner = {
           type: "Banner",
-          image: {
-            public_id: myCloud.public_id,
-            url: myCloud.secure_url,
-          },
-          title,
-          subTitle,
+          
+            // image: {
+            //   public_id: myCloud.public_id,
+            //   url: myCloud.secure_url,
+            // },
+            
+            image:{
+              public_id:image.startsWith("https") ? bannerData.banner.image.public_id : data?.public_id,
+              url:image.startsWith("https") ? bannerData.banner.image.url : data?.secure_url
+            },
+            title,
+            subTitle,
+          
         };
 
-        await LayoutModel.findByIdAndUpdate(bannerData._id,{banner});
+        await LayoutModel.findByIdAndUpdate(bannerData._id, { banner });
       }
 
       if (type === "FAQ") {
         const { faq } = req.body;
-        const FaqItem = await LayoutModel.findOne({type:"FAQ"})
+        const FaqItem = await LayoutModel.findOne({ type: "FAQ" });
         const faqItems = await Promise.all(
           faq.map(async (item: any) => {
             return {
@@ -111,13 +126,15 @@ export const editLayout = CatchAsyncError(
             };
           })
         );
-        await LayoutModel.findByIdAndUpdate(FaqItem?._id,{ type: "FAQ", faq: faqItems });
+        await LayoutModel.findByIdAndUpdate(FaqItem?._id, {
+          type: "FAQ",
+          faq: faqItems,
+        });
       }
 
       if (type === "Categories") {
         const { categories } = req.body;
-        const categoryData = await LayoutModel.findOne({type:"Categories"})
-
+        const categoryData = await LayoutModel.findOne({ type: "Categories" });
 
         const categoriesItem = await Promise.all(
           categories.map(async (item: any) => {
@@ -126,33 +143,34 @@ export const editLayout = CatchAsyncError(
             };
           })
         );
-        await LayoutModel.findByIdAndUpdate(categoryData?._id,{
+        await LayoutModel.findByIdAndUpdate(categoryData?._id, {
           type: "Categories",
           categories: categoriesItem,
         });
       }
       res.status(200).json({
-        success:true,
-        message:"Layout Updated successfully"
-      })
+        success: true,
+        message: "Layout Updated successfully",
+      });
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));
     }
   }
 );
 
-
 //get layout by type
 
-export const getLayoutByType = CatchAsyncError(async(req:Request, res:Response, next:NextFunction) => {
+export const getLayoutByType = CatchAsyncError(
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const {type} = req.body;
-        const layout = await LayoutModel.findOne({type});
-        res.status(200).json({
-            success:true,
-            layout
-        })
+      const { type } = req.params;
+      const layout = await LayoutModel.findOne({ type });
+      res.status(200).json({
+        success: true,
+        layout,
+      });
     } catch (error: any) {
-        return next(new ErrorHandler(error.message, 500));
-      }
-})
+      return next(new ErrorHandler(error.message, 500));
+    }
+  }
+);
