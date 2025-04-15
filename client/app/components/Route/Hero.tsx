@@ -78,16 +78,22 @@ import React, { FC } from "react";
 import Image from "next/image";
 import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
+import { useGetHeroDataQuery } from "@/redux/features/layout/layout";
 
 type Props = {};
 
 const Hero: FC<Props> = (props) => {
+  const { data,refetch } = useGetHeroDataQuery("Banner", {
+      
+    });
   return (
     <div className="w-full flex items-center flex-col-reverse 1000px:flex-row mt-[100px]">
       {/* Left Section - Image */}
       <div className="w-full 1000px:w-[50%] 1500px:h-[700px] 1100px:h-[600px] h-[30vh] flex items-center justify-center relative hero_animation rounded-full">
         <Image
-          src={require("../../../public/assests/banner-img-1.png")}
+          src={data?.layout?.banner?.image?.url}
+          width={400}
+          height={400}
           alt="Hero Image"
           className="object-contain w-[90%] 1100px:w-[85%] h-auto z-[10]"
         />
@@ -96,11 +102,10 @@ const Hero: FC<Props> = (props) => {
       {/* Right Section - Content */}
       <div className="w-full 1000px:w-[50%] flex flex-col items-center 1000px:items-start text-center 1000px:text-left px-4 1000px:px-8">
         <h2 className="dark:text-white text-[#000000c7] text-[30px] 1000px:text-[50px] font-[600] font-Josefin py-2 leading-[1.2]">
-          Improve Your Online Learning Experience Better Instantly
+          {data?.layout?.banner?.title}
         </h2>
         <p className="dark:text-[#edfff4] text-[#000000ac] font-Josefin font-[600] text-[18px] mt-4 leading-[1.6]">
-          We have 40k+ Online courses & 500K+ Online registered students. Find
-          your desired Courses from them.
+          {data?.layout?.banner?.subTitle}.
         </p>
 
         {/* Search Input */}

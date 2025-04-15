@@ -31,7 +31,7 @@ const CoursePreview: FC<Props> = ({
   }
 
   const createCourse = () => {
-    handleCourseCreate()
+   handleCourseCreate()
   }
 
   return (

@@ -36,11 +36,11 @@ const CreateCourse = (props: Props) => {
     estimatedPrice: "",
     tags: "",
     level: "",
-    categories: "",
+    categories: "",  //categories
     demoUrl: "",
     thumbnail: "",
   });
-  // console.log(courseInfo)
+  console.log(courseInfo)
   const [benefits, setBenefits] = useState([{ title: "" }]);
   const [prerequisities, setPrerequisities] = useState([{ title: "" }]);
   const [courseContentData, setCourseContentData] = useState([
@@ -60,8 +60,7 @@ const CreateCourse = (props: Props) => {
     },
   ]);
   const [courseData, setCourseData] = useState({});
-  console.log(courseData)
-
+  // console.log(courseData)
   const handleSubmit = async () => {
     // format benefits array
     const formattedBenefits = benefits.map((benefits) => ({
@@ -98,12 +97,14 @@ const CreateCourse = (props: Props) => {
       thumbnail: courseInfo.thumbnail,
       level: courseInfo.level,
       demoUrl: courseInfo.demoUrl,
+      categories: courseInfo.categories,
       totalVideos: courseContentData.length,
       benefits: formattedBenefits,
       prerequisites: formattedPrerequisites,
       courseData: formattedCourseContentData,
     };
-    setCourseData(data);
+     setCourseData(data);
+    //  console.log(data.thumbnail)
   };
 
   const handleCourseCreate = async (e: any) => {
@@ -112,7 +113,9 @@ const CreateCourse = (props: Props) => {
     if (!isLoading) {
       await createCourse(data);
     }
+     console.log(data)
   };
+  
 
   return (
     <div className="w-full flex min-h-screen">

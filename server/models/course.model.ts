@@ -37,8 +37,8 @@ interface ICourse extends Document{
     description:string;
     categories:string;
     price:number;
-    estimatePrice?: number;
-    thumbmail: object;
+    estimatedPrice?: number;
+    thumbnail: object;
     tags:string;
     level:string;
     demoUrl:string;
@@ -96,26 +96,31 @@ const courseSchema = new Schema<ICourse>({
     },
     categories:{
         type:String,
-        required:true
+        // required:true
     },
     price:{
         type:Number,
         required:true
     },
-    estimatePrice:{
+    estimatedPrice:{
         type:Number,
         
     },
-    thumbmail:{
-        public_id:{
-            type:String,
-            // required:true
-        },
-        url: {
-            type:String,
-            // required:true
-        }
-    },
+    // thumbnail:{
+    //     public_id:{
+    //         type:String,
+    //         // required:true
+    //     },
+    //     url: {
+    //         type:String,
+    //         // required:true
+    //     }
+    // },
+
+    thumbnail: {
+        public_id: String,
+        url: String,
+      },
    tags: {
     type:String,
     required:true
