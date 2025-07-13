@@ -8,25 +8,25 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({
     refreshToken: builder.query({
-      query: (data) => ({
-        url: "refreshtoken",
+      query: () => ({
+        url: "refresh-token",
         method: "GET",
         credentials: "include" as const,
       }),
     }),
 
     loadUser: builder.query({
-      query: (data) => ({
+      query: () => ({
         url: "me",
         method: "GET",
-        credentials: "include" as const,
+        credentials: "include" as const
       }),
       async onQueryStarted(arg, { queryFulfilled, dispatch }) {
               try {
                 const result = await queryFulfilled;
                 dispatch(
-                  userLoggedIn({
-                    accessToken: result.data.activationToken,
+                  userLoggedIn({ //activationToken to accessToken
+                    accessToken: result.data.accessToken,
                     user: result.data.user,
                   })
                 );

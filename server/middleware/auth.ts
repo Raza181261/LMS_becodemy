@@ -6,16 +6,17 @@ import { redis } from "../utils/redis";
 
 export const isAuthenticated = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
-    const access_token = req.cookies.access_Token as string;
+    
+    const accessToken = req.cookies.access_token as string;
 
-    if (!access_token) {
+    if (!accessToken) {
       return next(
-        new ErrorHandler("Please login to access this resources", 400)
+        new ErrorHandler("[No_Token] Please login to access this resources", 400)
       );
     }
 
     const decoded = jwt.verify(
-      access_token,
+      accessToken,
       process.env.ACCESS_TOKEN as string
     ) as JwtPayload;
     if (!decoded) {
@@ -25,8 +26,9 @@ export const isAuthenticated = CatchAsyncError(
     const user = await redis.get(decoded.id);
 
     if (!user) {
-      return next(new ErrorHandler("Please login to access this resources", 400));
+      return next(new ErrorHandler("[No User] Please login to access this resources", 400));
     }
+    // console.log(user);
     req.user = JSON.parse(user);
 
     next();

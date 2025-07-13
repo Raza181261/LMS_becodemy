@@ -14,13 +14,26 @@ const CoursePlayer: FC<Props> = ({ videoUrl }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/v1/getVdocipherOTP", {
+      .post("http://localhost:8000/api/v1/getVdoCipherOTP", {
         videoId: videoUrl,
       })
       .then((res) => {
         setVideoData(res.data);
       });
   }, [videoUrl]);
+
+  // useEffect(() => {
+  //   axios
+  //     .post(`http://localhost:8000/api/v1/getVdoCipherOTP`, {
+  //       videoId: videoUrl,
+  //     })
+  //     .then((res) => {
+  //       setVideoData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, [videoUrl]);
 
   return (
     <div style={{ paddingTop: "41%", position: "relative" }}>

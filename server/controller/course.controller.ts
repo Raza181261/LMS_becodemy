@@ -205,9 +205,11 @@ export const getAllCourse = CatchAsyncError(
 //get courses content --only valid user
 export const getCourseByUser = CatchAsyncError(
   async (req: Request, res: Response, next: NextFunction) => {
+    
     try {
       const userCourseList = req.user?.courses;
       const courseId = req.params.id;
+  
 
       const courseExist = userCourseList?.find(
         (course: any) => course._id.toString() === courseId
@@ -222,9 +224,12 @@ export const getCourseByUser = CatchAsyncError(
       const course = await CourseModel.findById(courseId);
       const content = course?.courseData;
 
+      console.log("Requested Course ID:", courseId);
+      console.log("User Courses:", userCourseList);
+
       res.status(200).json({
         success: true,
-        content,
+        courseData: content, //add courseData in later
       });
     } catch (error: any) {
       return next(new ErrorHandler(error.message, 500));

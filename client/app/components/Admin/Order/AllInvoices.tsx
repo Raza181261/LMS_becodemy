@@ -42,6 +42,28 @@ const AllInvoices = ({ isDashboard }: Props) => {
     }
   }, [data, usersData, coursesData]);
 
+//   useEffect(() => {
+//   if (Array.isArray(data?.orders)) {
+//     const temp = data.orders.map((item: any) => {
+//       const user = usersData?.users?.find(
+//         (user: any) => user._id === item.userId
+//       );
+//       const course = coursesData?.courses?.find(
+//         (course: any) => course._id === item.courseId
+//       );
+//       return {
+//         ...item,
+//         userName: user?.name,
+//         userEmail: user?.email,
+//         Title: course?.name,
+//         price: "$" + course?.price,
+//       };
+//     });
+
+//     setOrderData(temp);
+//   }
+// }, [data, usersData, coursesData]);
+
   const columns: any = [
     { field: "id", headerName: "ID", flex: 0.3 },
     { field: "userName", headerName: "Name", flex: isDashboard ? 0.6 : 0.5 },

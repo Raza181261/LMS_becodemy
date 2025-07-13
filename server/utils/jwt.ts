@@ -11,12 +11,12 @@ interface ITokenOptions {
   secure?: boolean;
 }
 
- //parse enviroment variable to integerate  with fallback value
+//parse enviroment variable to integerate  with fallback value
  const accessTokenExpire = parseInt(
   process.env.ACCESS_TOKEN_EXPIRE || "300",
   10
 );
-const refreshTokenExpire = parseInt(
+ const refreshTokenExpire = parseInt(
   process.env.REFRESH_TOKEN_EXPIRE || "1200",
   10
 );
@@ -36,29 +36,35 @@ export const refreshTokenOptions: ITokenOptions = {
   sameSite: "lax",
 };
 
-export const sendToken = (user: IUser, statusCode: number, res: Response) => {
+export const sendToken = async (
+  user: IUser,
+  statusCode: number,
+  res: Response
+) => {
   const accessToken = user.SignAccessToken();
   const refreshToken = user.SignRefreshToken();
 
   //upload session to redis
-//    redis.set(user._id, JSON.stringify(user) as any)
-const userId = String(user._id); // Safely convert _id to a string
-const userData = JSON.stringify(user); // Serialize the user object
-
-redis.set(userId, userData); // Store the data in Redis
-
+     redis.set(user._id, JSON.stringify(user) as any)
+  // const userId = String(user._id); // Safely convert _id to a string
+  // const userData = JSON.stringify(user); // Serialize the user object
+  // await redis.set(userId, userData); // Store the data in Redis
+  // const tempVar = await redis.get(userId);
+  // console.log("redis data", tempVar);
 
   //only set secure to true in production
   if (process.env.NODE_ENV === "production") {
     accessTokenOptions.secure = true;
   }
 
-  res.cookie("access_Token", accessToken, accessTokenOptions);
-  res.cookie("refresh_Token", refreshToken, refreshTokenOptions);
+  res.cookie("access_token", accessToken, accessTokenOptions);
+  res.cookie("refresh_token", refreshToken, refreshTokenOptions);
 
   res.status(statusCode).json({
     success: true,
     user,
     accessToken,
+    // refreshToken
+    // token: accessToken,
   });
 };
