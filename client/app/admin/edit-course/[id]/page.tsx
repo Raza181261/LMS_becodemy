@@ -13,7 +13,7 @@ type Props = {
 
 // const page = ({params}:any) => {
 //     const id = params?.id
-const page = ({ params }: Props) => {
+const Page = ({ params }: Props) => {
   const { id } = use(params) 
   return (
     <div>
@@ -36,4 +36,4 @@ const page = ({ params }: Props) => {
   )
 }
 
-export default page
+export default Page

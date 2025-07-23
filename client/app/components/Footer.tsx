@@ -6,10 +6,13 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <footer>
-      <div className="border border-[#000000e] dark:border-[#ffffff1e]" />
+      {/* Divider */}
+      <div className="border border-[#ffffff1e] dark:border-[#ffffff1e]" />
       <br />
-      <div className="w-[95%] 800px:w-full 800px:max-w-[85%] max-auto px-2 sm:px-6 lg:px-8">
+
+      <div className="w-[95%] 800px:w-full 800px:max-w-[85%] mx-auto px-2 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+          {/* About Section */}
           <div className="space-y-3">
             <h3 className="text-[20px] font-[600] text-black dark:text-white">
               About
@@ -18,7 +21,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/about"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2c4fffc6] dark:hover:text-[#fefffdd8]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   Our Story
                 </Link>
@@ -26,7 +29,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   Privacy Policy
                 </Link>
@@ -34,13 +37,15 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/faq"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   FAQ
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* Quick Links */}
           <div className="space-y-3">
             <h3 className="text-[20px] font-[600] text-black dark:text-white">
               Quick Links
@@ -49,7 +54,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/courses"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   Courses
                 </Link>
@@ -57,7 +62,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/profile"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   My Account
                 </Link>
@@ -65,7 +70,7 @@ const Footer = (props: Props) => {
               <li>
                 <Link
                   href="/course-dashboard"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   Course Dashboard
                 </Link>
@@ -73,61 +78,73 @@ const Footer = (props: Props) => {
             </ul>
           </div>
 
+          {/* Social Links */}
           <div className="space-y-3">
             <h3 className="text-[20px] font-[600] text-black dark:text-white">
-                Social Links
+              Social Links
             </h3>
             <ul className="space-y-4">
-            <li>
-                <Link
-                  href="/https://www.youtube.com/watch?v=VeVahOuZIr8&t=1359s"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
-                >
-                  You Tube
-                </Link>
-              </li>
-
               <li>
-                <Link
-                  href="/https://www.linkedin.com/in/raza-ur-rehman-6525472a6/"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                <a
+                  href="https://www.youtube.com/watch?v=VeVahOuZIr8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
+                >
+                  YouTube
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/raza-ur-rehman-6525472a6/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   LinkedIn
-                </Link>
+                </a>
               </li>
-
               <li>
-                <Link
-                  href="/https://github.com/Raza181261"
-                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]"
+                <a
+                  href="https://github.com/Raza181261"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#2190ff]"
                 >
                   GitHub
-                </Link>
+                </a>
               </li>
             </ul>
-
-
           </div>
 
-          <div className="space-y-3">
+          {/* Newsletter */}
+          <div>
             <h3 className="text-[20px] font-[600] text-black dark:text-white">
-                Contact Info
+              Newsletter
             </h3>
-            <p className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]">
-                Call Us: 1-885-237-2025
+            <p className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3]">
+              Stay updated with new courses and tips! Subscribe to our
+              newsletter.
             </p>
-            <p className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]">
-                Address: +7001 vermart, New York, NY 10001
-            </p>
-            <p className="text-[16px] text-[#000000b3] dark:text-[#ffffffb3] hover:text-[#000000e] dark:hover:text-[#ffffffe]">
-                Mail Us: abuosman559@gamil.com
-            </p>
+            <form className="mt-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                className="w-full bg-transparent border rounded h-[40px] px-2 outline-none mt-[10px] font-Poppins"
+              />
+              <button
+                type="submit"
+                className="flex justify-center items-center py-3 px-6 rounded-full cursor-pointer bg-[#2190ff] text-white font-semibold text-[16px] mt-4 w-full 800px:w-[150px]"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
         </div>
         <br />
         <p className="text-center text-black dark:text-white">
-            Copyright © 2025 Elearning | All Right Reserved
-
+          Copyright © 2025 ELearning | All Rights Reserved
         </p>
       </div>
       <br />

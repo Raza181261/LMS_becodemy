@@ -29,6 +29,7 @@ const CourseInformation: FC<Props> = ({
       setCategories(data.layout.categories);
     }
   }, [data]);
+  // console.log(data)
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -203,7 +204,7 @@ const CourseInformation: FC<Props> = ({
               <option value="" className="dark:text-white text-black">
                 Select Category
               </option>
-              {categories.map((item: any) => (
+              { categories.map((item: any) => ( //add categories && 
                 <option
                   value={item.title}
                   key={item._id}

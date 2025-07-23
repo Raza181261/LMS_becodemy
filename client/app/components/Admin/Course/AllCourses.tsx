@@ -290,33 +290,7 @@ const AllCourses = (props: Props) => {
             <DataGrid checkboxSelection rows={rows} columns={columns} />
           </Box>
           {
-            // open && (
-            //   <Modal
-            //    open={open}
-            //    onClose={() => setOpen(!open)}
-            //    aria-labelledby="modal-modal-title"
-            //    aria-describedby="modal-modal-description"
-            //   >
-            //     <Box className="absolute top-[50%] left-[50%] -translate-x-1/2 ">
-            //     <h1 className={`${styles.title}`}>
-            //       Are you sure you want to delete this course?
-            //     </h1>
-            //     <div className="flex w-full items-center justify-between mb-6 mt-3">
-            //       <div
-            //        className={`${styles.button} !w-[120px] h-[30px] bg-[#57c7a3]`}
-            //        onClick={() => setOpen(!open)}
-            //       >
-            //         Cancel
-            //       </div>
-            //       <div className={`${styles.button} !w-[120px] h-[30px] bg-[#d63737]`}
-            //       onClick={handleDelete}
-            //       >
-            //         Delete
-            //       </div>
-            //     </div>
-            //     </Box>
-            //   </Modal>
-            // )
+            
             open && (
               <Modal
                 open={open}

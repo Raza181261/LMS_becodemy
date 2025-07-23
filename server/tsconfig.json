@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
+      // "module": "NodeNext",
+      "module": "commonjs",
+      "rootDir": "../server",
+      "outDir": "./build",
+      // "moduleResolution": "NodeNext",
       "target": "ES2020", // or another target version you're using
       "esModuleInterop": true,
       "strict": true,

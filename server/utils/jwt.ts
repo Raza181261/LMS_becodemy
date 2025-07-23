@@ -45,12 +45,16 @@ export const sendToken = async (
   const refreshToken = user.SignRefreshToken();
 
   //upload session to redis
+
+
+
      redis.set(user._id, JSON.stringify(user) as any)
-  // const userId = String(user._id); // Safely convert _id to a string
-  // const userData = JSON.stringify(user); // Serialize the user object
-  // await redis.set(userId, userData); // Store the data in Redis
-  // const tempVar = await redis.get(userId);
-  // console.log("redis data", tempVar);
+
+    //  const userId = (user._id as Object).toString();
+    //   const userData = JSON.stringify(user);
+    //   await redis.set(userId, userData);
+
+
 
   //only set secure to true in production
   if (process.env.NODE_ENV === "production") {

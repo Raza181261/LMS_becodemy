@@ -1,10 +1,17 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "type" : "common.js",
+  "main": "build/server.js",
+  "engines" : {
+    "node" : "18.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only server.ts"
+    "dev": "ts-node-dev --respawn --transpile-only server.ts",
+    "start": "node build/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false",
+    "build": "tsc"
   },
   "author": "raza",
   "license": "ISC",
@@ -16,6 +23,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
     "@types/node-cron": "^3.0.11",
+    "@types/socket.io": "^3.0.1",
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.1",
@@ -24,11 +32,13 @@
     "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-rate-limit": "^8.0.1",
     "ioredis": "^5.4.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16",
+    "socket.io": "^4.8.1",
     "stripe": "^18.0.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"

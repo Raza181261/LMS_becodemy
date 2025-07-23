@@ -2,6 +2,7 @@ import { styles } from "@/app/styles/style";
 import Image from "next/image";
 import React from "react";
 import ReviewCard from "../Review/ReviewCard";
+import studyImage from "../../../public/assests/business-img.png"
 // import studyImage from "../../../public/assets/study3.jpg";
 
 type Props = {};
@@ -56,7 +57,7 @@ const Reviews = (props: Props) => {
       <div className="w-full 800px:flex items-center">
         <div className="800px:w-[50%] w-full">
           <Image
-            src={require("../../../public/assests/study3.jpg")}
+            src={studyImage}
             alt="business"
             width={500}
             height={500}
@@ -79,7 +80,7 @@ const Reviews = (props: Props) => {
         <br />
         <br />
       </div>
-      <div className="grid grid-cols-1 gap-[25px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-2 xl:gap-[35px] mb-12 border-0 md:[&>*:nth-child(3)]:!mt-[-60px] md:[&>*:nth-child(6)]:!mt-[-40px] ">
+      <div className="grid grid-cols-1 gap-[25px] md:grid-cols-2 md:gap-[25px] lg:grid-cols-2 lg:gap-[25px] xl:grid-cols-2 xl:gap-[35px] mb-12 border-0 md:[&>*:nth-child(3)]:!mt-[-60px] md:[&>*:nth-child(6)]:!mt-[-20px] ">
         {reviews &&
           reviews.map((i, index) => <ReviewCard item={i} key={index} />)}
       </div>

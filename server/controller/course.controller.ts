@@ -210,6 +210,7 @@ export const getCourseByUser = CatchAsyncError(
       const userCourseList = req.user?.courses;
       const courseId = req.params.id;
   
+      // return res.json({courseId, userCourseList, reqUser: req.user}); //checked by aqib
 
       const courseExist = userCourseList?.find(
         (course: any) => course._id.toString() === courseId
@@ -217,7 +218,7 @@ export const getCourseByUser = CatchAsyncError(
 
       if (!courseExist) {
         return next(
-          new ErrorHandler("You are not eligible to access this course", 404)
+          new ErrorHandler("You are not eligible to access this course,course doesn't exits", 404)
         );
       }
 
@@ -331,6 +332,8 @@ export const addAnswer = CatchAsyncError(
       const newAnswer: any = {
         user: req.user,
         answer,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
 
       //add this answer to our course content
@@ -421,13 +424,20 @@ export const addReview = CatchAsyncError(
       }
 
       await course?.save();
+      await redis.set(courseId, JSON.stringify(course), "EX", 604800); //7 days
 
-      const notification = {
-        title: "New Review Received",
-        message: `${req.user?.name} has given review in ${course?.name}`,
-      };
+      // const notification = {
+      //   title: "New Review Received",
+      //   message: `${req.user?.name} has given review in ${course?.name}`,
+      // };
 
       //create notification later
+
+       await NotificationModel.create({
+        user: req.user?._id,
+         title: "New Review Received",
+        message: `${req.user?.name} has given review in ${course?.name}`,
+      });
 
       res.status(200).json({
         success: true,
@@ -468,6 +478,8 @@ export const addReplyToReview = CatchAsyncError(
       const replyData: any = {
         user: req.user,
         comment,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
 
       if (!review.commentReplies) {
@@ -477,6 +489,9 @@ export const addReplyToReview = CatchAsyncError(
       review.commentReplies?.push(replyData);
 
       await course?.save();
+
+      await redis.set(courseId, JSON.stringify(course), "EX", 604800); //7 days
+
 
       res.status(200).json({
         success: true,

@@ -34,7 +34,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
           ...item,
           userName: user?.name,
           userEmail: user?.email,
-          Title: course?.name,
+          title: course?.name,
           price: "$" + course?.price,
         };
       });
@@ -42,27 +42,27 @@ const AllInvoices = ({ isDashboard }: Props) => {
     }
   }, [data, usersData, coursesData]);
 
-//   useEffect(() => {
-//   if (Array.isArray(data?.orders)) {
-//     const temp = data.orders.map((item: any) => {
-//       const user = usersData?.users?.find(
-//         (user: any) => user._id === item.userId
-//       );
-//       const course = coursesData?.courses?.find(
-//         (course: any) => course._id === item.courseId
-//       );
-//       return {
-//         ...item,
-//         userName: user?.name,
-//         userEmail: user?.email,
-//         Title: course?.name,
-//         price: "$" + course?.price,
-//       };
-//     });
+  //   useEffect(() => {
+  //   if (Array.isArray(data?.orders)) {
+  //     const temp = data.orders.map((item: any) => {
+  //       const user = usersData?.users?.find(
+  //         (user: any) => user._id === item.userId
+  //       );
+  //       const course = coursesData?.courses?.find(
+  //         (course: any) => course._id === item.courseId
+  //       );
+  //       return {
+  //         ...item,
+  //         userName: user?.name,
+  //         userEmail: user?.email,
+  //         Title: course?.name,
+  //         price: "$" + course?.price,
+  //       };
+  //     });
 
-//     setOrderData(temp);
-//   }
-// }, [data, usersData, coursesData]);
+  //     setOrderData(temp);
+  //   }
+  // }, [data, usersData, coursesData]);
 
   const columns: any = [
     { field: "id", headerName: "ID", flex: 0.3 },
@@ -100,67 +100,26 @@ const AllInvoices = ({ isDashboard }: Props) => {
           // },
 
           {
-                field: "mail",
-                headerName: "Email",
-                flex: 0.2,
-                renderCell: (params: any) => {
-                  return (
-                    <>
-                      <a href={`mailto:${params.row.userEmail}`}>
-                        <AiOutlineMail
-                          className="text-black dark:text-white mt-4"
-                          size={20}
-                        />
-                      </a>
-                    </>
-                  );
-                },
-              },
+            field: "mail",
+            headerName: "Email",
+            flex: 0.2,
+            renderCell: (params: any) => {
+              return (
+                <>
+                  <a href={`mailto:${params.row.userEmail}`}>
+                    <AiOutlineMail
+                      className="text-black dark:text-white mt-4"
+                      size={20}
+                    />
+                  </a>
+                </>
+              );
+            },
+          },
         ]),
   ];
 
-  const rows: any = [
-    {
-      id: "123456789",
-      userName: "Raza ur rehman",
-      userEmail: "official.razarehman@gmail.com",
-      title: "React JS",
-      price: "$500",
-      created_at: "2021-10-10",
-    },
-    {
-      id: "123456789",
-      userName: "Raza ur rehman",
-      userEmail: "official.razarehman@gmail.com",
-      title: "React JS",
-      price: "$500",
-      created_at: "2021-10-10",
-    },
-    {
-      id: "123456789",
-      userName: "Raza ur rehman",
-      userEmail: "official.razarehman@gmail.com",
-      title: "React JS",
-      price: "$500",
-      created_at: "2021-10-10",
-    },
-    {
-      id: "123456789",
-      userName: "Raza ur rehman",
-      userEmail: "official.razarehman@gmail.com",
-      title: "React JS",
-      price: "$500",
-      created_at: "2021-10-10",
-    },
-    {
-      id: "123456789",
-      userName: "Raza ur rehman",
-      userEmail: "official.razarehman@gmail.com",
-      title: "React JS",
-      price: "$500",
-      created_at: "2021-10-10",
-    },
-  ];
+  const rows: any = [];
 
   // ordersData && ordersData.forEach((item:any) => {
   //   rows.push({
@@ -250,7 +209,7 @@ const AllInvoices = ({ isDashboard }: Props) => {
               rows={rows}
               columns={columns}
               // components={isDashboard ? {} : { Toolbar: GridToolbar }}
-              slots={isDashboard ? {} : { toolbar: GridToolbar }} 
+              slots={isDashboard ? {} : { toolbar: GridToolbar }}
             />
           </Box>
         </Box>
