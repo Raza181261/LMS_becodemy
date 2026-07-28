@@ -1,3 +1,5 @@
+Live URL = mindstack-lms.vercel.app/
+
 # LMS Becodemy — Learning Management System
 
 A full-stack **Learning Management System (LMS)** where admins can create and manage courses, and users can browse, purchase, and consume course content — complete with video lessons, Q&A, reviews, notifications, and an analytics dashboard.
